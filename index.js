@@ -13,10 +13,17 @@ var bijous = new Bijous({
   // Setup our modules, we need the server module loaded first and the router
   // module loaded last, all other modules can be loaded as necessary.
   bundles: {
+    // Private modules are setup for server-side code
     private: [
       'modules/private/server',
-      'modules/private/!(router)',
-      'modules/private/router'
+      'modules/private/!(routes)',
+      'modules/private/website',
+      'modules/private/routes'
+    ],
+    // Public modules are setup for client-side code
+    public: [
+      'modules/public/vendors/*.js',
+      'modules/public/**/*.js'
     ]
   }
 });

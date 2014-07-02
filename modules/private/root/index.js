@@ -10,7 +10,8 @@ exports = module.exports = function (context, done) {
         version: pack.version,
         links: {
           root: '/',
-          hello: '/hello'
+          hello: '/hello',
+          info: '/info/'
         }
       });
     }
