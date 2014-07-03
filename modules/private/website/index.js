@@ -11,6 +11,7 @@ exports = module.exports = function (context, done) {
   app.set('view engine', 'jade');
 
   var homePath = path.join(context.cwd, 'modules', 'public', 'app', 'views', 'index.jade');
+  var lessRegex = /\.less$/i;
 
   var response = {
     publicModules: context.list('public'),
@@ -18,7 +19,10 @@ exports = module.exports = function (context, done) {
     publicStylesheets: context.list('stylesheets'),
     home: function (req, res) {
       var publicModules = response.publicModules.urls();
-      res.render(homePath, { modules: publicModules });
+      var publicStylesheets = response.publicStylesheets.urls().map(function (url) {
+        return url.replace(lessRegex, '.css');
+      });
+      res.render(homePath, { modules: publicModules, styles: publicStylesheets });
     }
   };
 

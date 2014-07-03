@@ -16,6 +16,10 @@ exports = module.exports = function (context, done) {
   webRouter.get('/', context.modules.website.home);
 
   var module = context.modules.website.publicModules;
+  var views = context.modules.website.publicViews;
+  var styles = context.modules.website.publicStylesheets;
+
+  var lessRegex = /\.less$/i;
 
   var files = module.files();
   var urls = module.urls();
@@ -32,8 +36,6 @@ exports = module.exports = function (context, done) {
     })(filePath));
   }
 
-  var views = context.modules.website.publicViews;
-
   files = views.files();
   urls = views.urls();
   var regex = /\.jade$/i;
@@ -46,7 +48,33 @@ exports = module.exports = function (context, done) {
     webRouter.get(url.replace(regex, '.html'), (function (filePath) {
       return function (req, res) {
         var publicModules = module.urls();
-        res.render(filePath, { modules: publicModules });
+        var publicStylesheets = styles.urls().map(function (url) {
+          return url.replace(lessRegex, '.css');
+        });
+        res.render(filePath, { modules: publicModules, styles: publicStylesheets });
+      };
+    })(filePath));
+  }
+
+  files = styles.files();
+  urls = styles.urls();
+  var less = require('less');
+  var rs = require('fs');
+
+  for (var f in files) {
+    var file = files[f];
+    var url = urls[f];
+    var filePath = path.join(context.cwd, file);
+
+    webRouter.get(url.replace(lessRegex, '.css'), (function (filePath) {
+      return function (req, res) {
+        fs.readFile(filePath, function (err, data) {
+          if (err) { throw err; }
+          less.render(data.toString(), function (e, css) {
+            if (e) { throw e; }
+            res.type('text/css').send(css);
+          });
+        });
       };
     })(filePath));
   }

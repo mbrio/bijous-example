@@ -3,6 +3,8 @@ html(ng-app="BijousExample")
   head
     meta(charset="utf-8")
     title Bijous Example
+    each style in styles
+      link(href="#{style}" rel="stylesheet")
   body(role="document")
     ui-view
 

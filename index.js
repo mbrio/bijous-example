@@ -33,6 +33,7 @@ var bijous = new Bijous({
     ],
 
     stylesheets: [
+      'modules/public/app/styles/styles.less',
       'modules/public/**/*.less'
     ]
   }
