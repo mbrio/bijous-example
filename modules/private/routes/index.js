@@ -4,20 +4,20 @@ var path = require('path');
 var fs = require('fs')
 
 exports = module.exports = function (context, done) {
-  var express = context.modules.server.express;
-  var app = context.modules.server.app;
+  var express = context.modules.private.server.express;
+  var app = context.modules.private.server.app;
 
   var apiRouter = new express.Router();
 
-  apiRouter.get('/', context.modules.root.get);
-  apiRouter.get('/hello', context.modules.hello.get);
+  apiRouter.get('/', context.modules.private.root.get);
+  apiRouter.get('/hello', context.modules.private.hello.get);
 
   var webRouter = new express.Router();
-  webRouter.get('/', context.modules.website.home);
+  webRouter.get('/', context.modules.private.website.home);
 
-  var module = context.modules.website.publicModules;
-  var views = context.modules.website.publicViews;
-  var styles = context.modules.website.publicStylesheets;
+  var module = context.modules.private.website.publicModules;
+  var views = context.modules.private.website.publicViews;
+  var styles = context.modules.private.website.publicStylesheets;
 
   var lessRegex = /\.less$/i;
 

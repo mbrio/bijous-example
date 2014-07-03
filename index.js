@@ -17,7 +17,6 @@ var bijous = new Bijous({
     private: [
       'modules/private/server',
       'modules/private/!(routes)',
-      'modules/private/website',
       'modules/private/routes'
     ],
     // Public modules are setup for client-side code
