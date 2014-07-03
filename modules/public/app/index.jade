@@ -1,0 +1,10 @@
+doctype html
+html(ng-app="BijousExample")
+  head
+    meta(charset="utf-8")
+    title Bijous Example
+  body(role="document")
+    ui-view
+
+    each module in modules
+      script(src="#{module}")

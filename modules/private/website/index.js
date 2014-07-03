@@ -10,10 +10,12 @@ exports = module.exports = function (context, done) {
   app.engine('jade', jade.__express);
   app.set('view engine', 'jade');
 
-  var homePath = path.join(context.cwd, 'modules', 'public', 'home', 'index.jade');
+  var homePath = path.join(context.cwd, 'modules', 'public', 'app', 'index.jade');
 
   var response = {
     publicModules: context.list('public'),
+    publicViews: context.list('views'),
+    publicStylesheets: context.list('stylesheets'),
     home: function (req, res) {
       var publicModules = response.publicModules.urls();
       res.render(homePath, { modules: publicModules });

@@ -22,8 +22,18 @@ var bijous = new Bijous({
     ],
     // Public modules are setup for client-side code
     public: [
+      'modules/public/vendors/angular.js',
       'modules/public/vendors/*.js',
+      'modules/public/app/index.js',
       'modules/public/**/*.js'
+    ],
+
+    views: [
+      'modules/public/**/*.jade'
+    ],
+
+    stylesheets: [
+      'modules/public/**/*.less'
     ]
   }
 });

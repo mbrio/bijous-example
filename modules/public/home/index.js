@@ -1,21 +1,31 @@
-window.onload = function () {
-  var request = new XMLHttpRequest();
-  request.open('GET', '/hello');
-  request.send(null);
-  request.onreadystatechange = function() {
-    var msg = document.getElementById('message');
+(function () {
+  'use strict';
 
-    if (request.readyState === 4) {
-      var json = JSON.parse(request.response);
+  angular
+    .module('BijousExample')
+    .config(function ($stateProvider) {
+      $stateProvider
+        .state('home', {
+          url: '/',
+          templateUrl: '/modules/public/home/index.html',
+          controller: 'HomeController'
+        });
+    })
+    .controller('HomeController', function ($scope, $http) {
+      $scope.msg = 'Loading...'
 
-      for (var key in json.hello) {
-        if (json.hello.hasOwnProperty(key)) {
-          msg.innerText = 'The API said \'' + json.hello[key] + '\' in (' + key + ')';
-          break;
-        }
-      }
-    } else {
-      msg.innerText = 'An error has occurred.'
-    }
-  };
-};
+      $http.get('/api/hello')
+        .success(function (data, status, headers, config) {
+          if (status === 200) {
+            $scope.msg = null;
+            $scope.hello = data.message;
+            $scope.lang = data.lang;
+          } else {
+            $scope.msg = 'An error has occurred.';
+          }
+        })
+        .error(function () {
+          $scope.msg = 'An error has occurred.';
+        });
+    });
+})();

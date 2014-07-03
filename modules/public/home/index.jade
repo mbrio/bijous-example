@@ -1,11 +1,4 @@
-doctype html
-html
-head
-  meta(charset="utf-8")
-  title Bijous Example
-body
+div
   h1 Bijous Example
-  div#message loading...
-
-  each module in modules
-    script(src="#{module}")
+  div(ng-if="msg") {{ msg }}
+  div(ng-if="!msg && hello") The API said "{{ hello }}" in ({{ lang }})
