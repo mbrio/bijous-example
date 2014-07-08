@@ -6,7 +6,7 @@ exports = module.exports = (context, results) ->
   { express, app } = results.private.server
   { website } = results.private
 
-  router = new express.Router
+  router = new express.Router()
   router.get '/', website.home
 
   modules = context.list 'public'

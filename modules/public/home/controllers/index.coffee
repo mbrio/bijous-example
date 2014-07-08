@@ -11,7 +11,7 @@ angular
 
     $http.get('/api/hello')
       .success (data, status, headers, config) ->
-        if status == 200
+        if status is 200
           $scope.msg = null
           $scope.hello = data.message
           $scope.lang = data.lang

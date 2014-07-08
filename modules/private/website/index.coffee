@@ -1,9 +1,8 @@
 path = require 'path'
 jade = require 'jade'
 
-exports = module.exports = (context, modules, done) ->
-  express = modules.private.server.express
-  app = modules.private.server.app
+exports = module.exports = (context, results, done) ->
+  { express, app } = results.private.server
 
   app.engine 'jade', jade.__express
   app.set 'view engine', 'jade'

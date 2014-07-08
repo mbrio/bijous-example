@@ -1,4 +1,4 @@
-exports = module.exports = (context, modules, done) ->
+exports = module.exports = (context, results, done) ->
   express = require 'express'
   http = require 'http'
 

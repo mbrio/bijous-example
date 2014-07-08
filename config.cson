@@ -1,5 +1,6 @@
 server:
   port: 3000
+# Properties here are passed to Winston
 logger:
   colorize: true
   timestamp: true

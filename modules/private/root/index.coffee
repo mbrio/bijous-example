@@ -1,6 +1,6 @@
 pack = require '../../../package.json'
 
-exports = module.exports = (context, modules, done) ->
+exports = module.exports = (context, results, done) ->
   done null,
     # Create our get express request
     get: (req, res) ->

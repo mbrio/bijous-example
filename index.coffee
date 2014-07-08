@@ -1,8 +1,8 @@
 Bijous = require 'bijous'
 winston = require 'winston'
-config = require('confurg').init 'bijous-example'
+config = require('envirofig').init 'bijous-example'
 
-startDate = new Date
+startDate = new Date()
 
 # Create our `Bijous` instance
 bijous = new Bijous
@@ -16,7 +16,7 @@ bijous.config = config
 
 # Setup a logger for use by our modules, as all modules will rely on this we
 # have placed this within the context
-bijous.logger = new winston.Logger
+bijous.logger = new winston.Logger()
 bijous.logger.setLevels winston.config.npm.levels
 bijous.logger.add winston.transports.Console, config.logger
 
