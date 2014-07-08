@@ -22,10 +22,11 @@
   "homepage": "https://github.com/mbrio/bijous-example",
   "devDependencies": {
     "gulp": "^3.8.5",
-    "gulp-jshint": "^1.6.4"
+    "gulp-coffeelint": "^0.3.3"
   },
   "dependencies": {
-    "bijous": "^0.1.6",
+    "bijous": "^0.2.0",
+    "coffee-script": "^1.7.1",
     "express": "^4.4.5",
     "jade": "^1.3.1",
     "less": "^1.7.3",
