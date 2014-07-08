@@ -10,5 +10,4 @@ gulp.task 'lint', ->
 
 gulp.task 'default', ['server']
 
-gulp.task 'server', (cb) ->
-  require './index'
+gulp.task 'server', (cb) -> require './index'

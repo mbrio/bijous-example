@@ -11,10 +11,12 @@ exports = module.exports = (context, modules, done) ->
   homePath = path.join context.cwd, 'modules', 'public', 'app', 'views',
     'index.jade'
   lessRegex = /\.less$/i
+  coffeeRegex = /\.coffee$/i
 
   response =
     home: (req, res) ->
-      pm = context.list('public').urls()
+      pm = context.list('public').urls().map (url) ->
+        url.replace coffeeRegex, '.js'
       ps = context.list('stylesheets').urls().map (url) ->
         url.replace lessRegex, '.css'
 
